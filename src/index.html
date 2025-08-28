@@ -5,17 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="img/favicon.png" type="image/png">
-  <link rel="stylesheet" href="./index.css.map">
+  <link rel="icon" type="image/png" href="icon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="icon/favicon.svg" />
+  <link rel="shortcut icon" href="icon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png" />
+  <link rel="manifest" href="../static/site.webmanifest" />
+  <link rel="preload" href="fonts/inter-v19-cyrillic_latin-600.woff2" as="font" crossorigin="">
+  <link rel="preload" href="fonts/inter-v19-cyrillic_latin-700.woff2" as="font" crossorigin="">
+  <link rel="preload" href="fonts/inter-v19-cyrillic_latin-regular.woff2" as="font" crossorigin="">
+  <link rel="stylesheet" href="index.css">
 
   <title>Inspired- Онлайн магазин нижнего белья</title>
 </head>
 <body>
   <header>
-    <div class="container">
+    <div class="container header__container">
       <a href="tel:89304902620" class="header__phone header__link">8 930 490 26 20</a>
-      <img class="header__logo" src="img/logo.svg" alt="logo">
+      <img class="header__logo" src="img/logo.png" alt="logo">
       <div class="header__navigation">
         <ul class="header__nav-list">
           <li class="header__nav-item">
@@ -59,7 +65,7 @@
         </ul>
         <ul class="navigation__category category">
           <li class="category__item">
-            <a href="#" class="category__link">Бюстгальтеры</a>
+            <a href="#" class="category__link category__link_active">Бюстгальтеры</a>
           </li>
           <li class="category__item">
             <a href="#" class="category__link">Трусы</a>

@@ -1,4 +1,8 @@
-@import '~normalize.css';
-@import 'style/style';
-//@import 'style/fonts'
-@import 'style/var'
+@use 'style/style';
+@use 'style/fonts';
+@use 'style/var';
+@use 'style/header';
+@use 'style/navigation';
+@use 'style/gender';
+@use 'style/category';
+@use 'style/hero';
