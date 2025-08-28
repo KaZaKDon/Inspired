@@ -19,13 +19,21 @@
             background-image: url('./img/bg-disctop-women.jpg');
         }
         @media (max-width: 420px) {
-            background-image: url('./img/bg-mobil-women.jpg');
+            background-image: url('./img/bg-mobail-women.jpg');
         }
     }
 
     &__men {
         background-image: url('./img/bg-men.jpg');
+
+        @media (max-width: 768px) {
+            background-image: url('./img/bg-tablet-men.jpg');
+        }
+        @media (max-width: 420px) {
+            background-image: url('./img/bg-mobil-men.jpg');
+        }
     }
+
 
     &__content {
         max-width: 590px;
