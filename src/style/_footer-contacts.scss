@@ -1,0 +1,18 @@
+.footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 16;
+    font-size: 18px;
+    line-height: 22px;
+
+    @media (max-width: 768px) {
+            gap: 21;
+            font-size: 14px;
+            line-height: 17px;
+        }
+    @media (max-width: 420px) {
+            gap: 9;
+            font-size: 12px;
+            line-height: 15px;
+        }
+}
