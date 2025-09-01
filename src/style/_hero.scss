@@ -13,24 +13,24 @@
     }
 
     &__women {
-        background-image: url('./img/bg-women.jpg');
+        background-image: url('../img/bg-women.jpg');
 
         @media (max-width: 768px) {
-            background-image: url('./img/bg-disctop-women.jpg');
+            background-image: url('../img/bg-desctop-women.jpg');
         }
         @media (max-width: 420px) {
-            background-image: url('./img/bg-mobail-women.jpg');
+            background-image: url('../img/bg-mobaile-women.jpg');
         }
     }
 
     &__men {
-        background-image: url('./img/bg-men.jpg');
+        background-image: url('../img/bg-man.jpg');
 
         @media (max-width: 768px) {
-            background-image: url('./img/bg-tablet-men.jpg');
+            background-image: url('../img/bg-tablet-man.jpg');
         }
         @media (max-width: 420px) {
-            background-image: url('./img/bg-mobil-men.jpg');
+            background-image: url('../img/bg-mobaile-man.jpg');
         }
     }
 

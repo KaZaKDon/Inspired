@@ -43,7 +43,7 @@
             width: 26px;
             height: 2px;
             background-color: #000;
-            opaciti: 0;
+            opacity: 0;
 
             @media (max-width: 768px) {
                 bottom: -4px;
@@ -54,7 +54,9 @@
         
         &_active {
             pointer-events: none;
-            &::after { opaciti: 1}
+            &:after { 
+                opacity: 1;
+                }
         }
     }
 }

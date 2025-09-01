@@ -375,7 +375,7 @@ iframe {
   width: 26px;
   height: 2px;
   background-color: #000;
-  opaciti: 0;
+  opacity: 0;
 }
 @media (max-width: 768px) {
   .category__link:after {
@@ -387,8 +387,8 @@ iframe {
 .category__link_active {
   pointer-events: none;
 }
-.category__link_active::after {
-  opaciti: 1;
+.category__link_active:after {
+  opacity: 1;
 }
 
 .hero {
@@ -409,29 +409,29 @@ iframe {
   }
 }
 .hero__women {
-  background-image: url("./img/bg-women.jpg");
+  background-image: url("../img/bg-women.jpg");
 }
 @media (max-width: 768px) {
   .hero__women {
-    background-image: url("./img/bg-disctop-women.jpg");
+    background-image: url("../img/bg-desctop-women.jpg");
   }
 }
 @media (max-width: 420px) {
   .hero__women {
-    background-image: url("./img/bg-mobail-women.jpg");
+    background-image: url("../img/bg-mobaile-women.jpg");
   }
 }
 .hero__men {
-  background-image: url("./img/bg-men.jpg");
+  background-image: url("../img/bg-man.jpg");
 }
 @media (max-width: 768px) {
   .hero__men {
-    background-image: url("./img/bg-tablet-men.jpg");
+    background-image: url("../img/bg-tablet-man.jpg");
   }
 }
 @media (max-width: 420px) {
   .hero__men {
-    background-image: url("./img/bg-mobil-men.jpg");
+    background-image: url("../img/bg-mobaile-man.jpg");
   }
 }
 .hero__content {

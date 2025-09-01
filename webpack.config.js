@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
-const devtool = devMode ? 'source-map' : undefined;
+const devtool = devMode ? 'source-map' : false;
 
 module.exports = {
   mode,
@@ -22,7 +22,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     filename: '[name].[contenthash].js',
-    assetModuleFilename: 'assets/[name][ext]',
+    publicPath: '/', // Важно для корректных путей к ассетам
+    assetModuleFilename: 'assets/[name][ext]', // для прочих ресурсов
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -31,8 +32,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
+    // Для копирования статичных файлов, если понадобится
     // new CopyPlugin({
-    //   patterns: [{ from: 'static', to: './' }],
+    //   patterns: [{ from: 'src/fonts', to: 'fonts' }],
     // }),
   ],
   module: {
@@ -45,10 +47,17 @@ module.exports = {
         test: /\.(c|sa|sc)ss$/i,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: devMode,
+              url: true, // Включаем обработку url() в CSS
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {
+              sourceMap: devMode,
               postcssOptions: {
                 plugins: [require('postcss-preset-env')],
               },
@@ -57,61 +66,63 @@ module.exports = {
           'group-css-media-queries-loader',
           {
             loader: 'resolve-url-loader',
+            options: {
+              sourceMap: devMode,
+              root: path.resolve(__dirname, 'src'),
+            },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              sourceMap: true, // Нужно true, чтобы resolve-url-loader работал корректно
             },
           },
         ],
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        test: /\.(woff2?|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'fonts/[name][ext]',
+          filename: 'fonts/[name][ext]', // шрифты попадут в dist/fonts
         },
       },
       {
         test: /\.(jpe?g|png|webp|gif|svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]', // картинки в dist/images
+        },
         use: devMode
           ? []
           : [
               {
                 loader: 'image-webpack-loader',
                 options: {
-                  mozjpeg: {
-                    progressive: true,
-                  },
-                  optipng: {
-                    enabled: false,
-                  },
-                  pngquant: {
-                    quality: [0.65, 0.9],
-                    speed: 4,
-                  },
-                  gifsicle: {
-                    interlaced: false,
-                  },
-                  webp: {
-                    quality: 75,
-                  },
+                  mozjpeg: { progressive: true },
+                  optipng: { enabled: false },
+                  pngquant: { quality: [0.65, 0.9], speed: 4 },
+                  gifsicle: { interlaced: false },
+                  webp: { quality: 75 },
                 },
               },
             ],
-        type: 'asset/resource',
       },
       {
         test: /\.m?js$/i,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
+          options: { presets: ['@babel/preset-env'] },
         },
       },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss', '.css'],
+    alias: {
+      '@fonts': path.resolve(__dirname, 'src/fonts'), // удобный алиас для шрифтов
+      '@images': path.resolve(__dirname, 'src/images'), // для картинок
+      '@styles': path.resolve(__dirname, 'src/styles'), // для стилей
+    },
   },
 };
