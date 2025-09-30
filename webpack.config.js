@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const CopyPlugin = require('copy-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
@@ -12,11 +13,6 @@ module.exports = {
   mode,
   target,
   devtool,
-  devServer: {
-    port: 3000,
-    open: true,
-    hot: true,
-  },
   entry: path.resolve(__dirname, 'src', 'index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -25,6 +21,23 @@ module.exports = {
     publicPath: '/', // Важно для корректных путей к ассетам
     assetModuleFilename: 'assets/[name][ext]', // для прочих ресурсов
   },
+  devServer: {
+    port: 3000,
+    open: true,
+    hot: true,
+
+    // 👇 Ключ для SPA роутинга
+    historyApiFallback:  true,
+
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+      publicPath: '/',
+    },
+
+    devMiddleware: {
+      publicPath: '/',
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
@@ -32,10 +45,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
-    // Для копирования статичных файлов, если понадобится
     // new CopyPlugin({
     //   patterns: [{ from: 'src/fonts', to: 'fonts' }],
     // }),
+    new FaviconsWebpackPlugin({
+      logo: './src/icon.png',
+      inject: true, 
+    })
   ],
   module: {
     rules: [
@@ -51,7 +67,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: devMode,
-              url: true, // Включаем обработку url() в CSS
+              url: true,
             },
           },
           {
@@ -74,7 +90,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true, // Нужно true, чтобы resolve-url-loader работал корректно
+              sourceMap: true,
             },
           },
         ],
@@ -83,14 +99,14 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'fonts/[name][ext]', // шрифты попадут в dist/fonts
+          filename: 'fonts/[name][ext]',
         },
       },
       {
         test: /\.(jpe?g|png|webp|gif|svg)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'images/[name][ext]', // картинки в dist/images
+          filename: 'images/[name][ext]',
         },
         use: devMode
           ? []
@@ -120,9 +136,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.scss', '.css'],
     alias: {
-      '@fonts': path.resolve(__dirname, 'src/fonts'), // удобный алиас для шрифтов
-      '@images': path.resolve(__dirname, 'src/images'), // для картинок
-      '@styles': path.resolve(__dirname, 'src/styles'), // для стилей
+      '@fonts': path.resolve(__dirname, 'src/fonts'),
+      '@images': path.resolve(__dirname, 'src/images'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
     },
   },
 };

@@ -1,5 +1,5 @@
-import { mainPage } from "./mainPage"
+import { mainPageController } from "../controllers/mainPageController"
 
 export const womenMainPage = () => {
-    mainPage('women')
+    mainPageController('women')
 }

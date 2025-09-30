@@ -3,6 +3,11 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
+
+    &:has(:checked) {
+        border: solid 0.4px #929292;
+    }
+
     &_check {
         border: solid 0.4px #929292;
     }
@@ -18,19 +23,14 @@
         border-radius: 50%;
     }
 
-    &_red:after {
-        background-color: #f00;
-    }
-
-    &_white:after {
-        background-color: #fff;
+    /*&__input:checked + &__check {
+        position: absolute;
+        insert: 0;
+        display: block;
         border: solid 0.4px #929292;
-        //background-color: #B67C7C;
-    }
+        border-radius: 50%;
+    }*/
 
-    &_black:after {
-        background-color: #000;
-    }
 }
 
 

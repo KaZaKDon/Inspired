@@ -1,59 +1,99 @@
-export const renderFooter = () => {
-    const footer = document.querySelector('.footer');
+import { createElement } from "../utils/createElement";
+import {
+    DATA, footer
+} from "../const";
 
-    footer.innerHTML = `
-        <div class="container">
-            <div class="footer__container">
-                <div class="footer__item footer__item_category footer-category">
-                <h2 class="footer__title footer-category__title">Каталог</h2>
-                <ul class="footer-category__list">
-                    <li class="footer-category__item">
-                    <h3 class="footer-category__subtitle">
-                        <a href="#" class="footer__link">Женщины</a>
-                    </h3>
-                    <ul class="footer-category__sublist">
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Бюстгальтеры</a>
-                        </li>
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Трусы</a>
-                        </li>
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Носки</a>
-                        </li>
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Халаты</a>
-                        </li>
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Термобелье</a>
-                        </li>
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Пижамы</a>
-                        </li>
-                    </ul>
-                    </li>
-                    <li class="footer-category__item">
-                    <h3 class="footer-category__subtitle">
-                        <a href="#" class="footer__link">Мужчины</a>
-                    </h3>
-                    <ul class="footer-category__sublist">
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Трусы</a>
-                        </li>
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Носки</a>
-                        </li>
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Халаты</a>
-                        </li>
-                        <li class="footer-category__subitem">
-                        <a href="#" class="footer__link">Термобелье</a>
-                        </li>
-                    </ul>
-                    </li>
-                </ul>
-                </div>
-                <div class="footer__item footer__item_social footer-social">
+const createFooterCategory = () => {
+    const footerCategory = createElement('div', {
+        className: 'footer__item footer__item_category footer-category'
+    })
+    createElement('h2', {
+        className: 'footer__title footer-category__title',
+        textContent: 'Каталог',
+    }, {
+        parent: footerCategory
+    }, );
+
+    const footerCategoryList = createElement('ul', {
+            className: 'footer-category__list',
+        },
+        {
+            parent: footerCategory,
+        }
+
+    );
+
+    for (const key in DATA.navigation) {
+        const footerCategoryItem = createElement('li',
+            {
+                className: 'footer-category__item'
+            },
+            {
+                parent: footerCategoryList,
+                append: createElement('h3',
+                    {
+                        className: 'footer-category__subtitle'
+                    },
+                    {
+                        append: createElement('a',
+                            {
+                                className: 'footer__link',
+                                href: `#/${key}`,
+                                textContent: DATA.navigation[key].title
+                            },
+                            /*{
+                                cb(el) {
+                                    el.addEventListener('click', e => {
+                                        e.preventDefault();
+                                        router.navigate(key)
+                                    })
+                                }
+                            }*/
+                        )
+                    }
+                )
+            }
+        )
+        createElement('ul',
+            {
+                className: 'footer-category__sublist'
+            },
+            {
+                parent: footerCategoryItem,
+                appends: DATA.navigation[key].list.map(item => createElement('li',
+                    {
+                        className: 'footer__link'
+                    },
+                    {
+                        append: createElement('a',
+                            {
+                                className: 'footer__link',
+                                href: `#/${key}/${item.slug}`,
+                                textContent: item.title
+                            }
+                        )
+                    }
+                ))
+            }
+        )
+    }
+
+    return footerCategory;
+}
+
+export const renderFooter = () => {
+    footer.textContent = ''
+
+    const container = createElement('div', {
+        className: 'container footer__container'
+    }, {
+        parent: footer,
+        append: createFooterCategory()
+    })
+
+    container.insertAdjacentHTML('beforeend',
+        `
+        <div class="footer__item footer__item_social footer-social">
                 <h2 class="footer__title footer-social__title">Связаться с нами</h2>
                 <p class="footer-social__subtitle">Контакты и адреса магазинов</p>
                 <ul class="footer-social__list">
@@ -89,8 +129,8 @@ export const renderFooter = () => {
                     Developer: <a href="#" class="footer__link"> Kazak</a>
                     </li>
                 </ul>
-                </div>
             </div>
-        </div>
+        
     `
+    )
 }

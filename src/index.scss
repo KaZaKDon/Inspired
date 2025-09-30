@@ -7,7 +7,15 @@
 @use './style/gender';
 @use './style/category';
 @use './style/hero';
+@use './style/card';
+@use './style/cart';
+@use './style/count';
+@use './style/size';
+@use './style/radio';
+@use './style/order';
+@use './style/item';
 @use './style/goods';
+@use './style/pagination';
 @use './style/product';
 @use './style/color';
 @use './style/footer';
@@ -16,3 +24,6 @@
 @use './style/footer-development';
 @use './style/footer-social';
 @use './style/footer-contacts';
+@use './style/search';
+@use './style/favorit';
+@use './style/main-button';

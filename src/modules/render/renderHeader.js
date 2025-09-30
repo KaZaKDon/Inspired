@@ -1,5 +1,7 @@
 import logoPath from '../../img/logo.png';
-import { createElement } from '../createElement';
+import { createElement } from "../utils/createElement";
+import { search, searchToggle } from './renderSearch';
+import { header } from "../const";
 
 export const searchButton = createElement('button', {
     className: 'header__link',
@@ -9,6 +11,11 @@ export const searchButton = createElement('button', {
         <path d="M16.4431 16.4438L20.9994 21.0002" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     `
+},
+{
+    cb(btn) {
+        btn.addEventListener('click', searchToggle)
+    }
 });
 searchButton.className = 'header__link'
 
@@ -20,7 +27,7 @@ export const cartLink = createElement('a', {
         <path d="M8.25 6.75C8.25 5.75544 8.64509 4.80161 9.34835 4.09835C10.0516 3.39509 11.0054 3 12 3C12.9946 3 13.9484 3.39509 14.6517 4.09835C15.3549 4.80161 15.75 5.75544 15.75 6.75"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     `,
-    href: 'cart'
+    href: '#cart'
 });
 
 export const favoriteLink = createElement('a', {
@@ -37,8 +44,16 @@ const container = createElement('div', {
     className: 'container header__container',
     innerHTML: `
         <a href="tel:89304902620" class="header__phone header__link">8 930 490 26 20</a>
-        <img class="header__logo" src="${logoPath}" alt="logo">
     `
+})
+
+createElement('a', {
+    className: 'header__logo',
+    href: '/#',
+    innerHTML: `<img src="${logoPath}" alt="logo"></img>`
+},
+{
+    parent: container
 })
 
 const nav = createElement('div', {
@@ -70,32 +85,7 @@ createElement('ul', {
     ]
 })
 export const renderHeader = () => {
-    const header = document.querySelector('.header');
 
     header.append(container)
+    header.after(search)
 }
-
-/*innerHTML = `
-        <div class="container header__container">
-            
-            <div class="header__navigation">
-                <ul class="header__nav-list">
-                <li class="header__nav-item">
-                    <button class="header__link">
-                    
-                    </button>
-                </li>
-                <li class="header__nav-item">
-                    <a class="header__link" href="#">
-                    
-                    </a>
-                </li>
-                <li class="header__nav-item">
-                    <a class="header__link" href="#">
-                    
-                    </a>
-                </li>
-                </ul>
-            </div>
-        </div>
-    `*/

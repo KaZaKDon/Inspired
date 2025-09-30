@@ -1,5 +1,5 @@
 import { mainPageController } from "../controllers/mainPageController"
 
-export const menMainPage = () => {
-    mainPageController('men')
+export const kidsMainPage = () => {
+    mainPageController('kids')
 }

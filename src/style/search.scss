@@ -1,0 +1,89 @@
+.search {
+    display: none;
+    padding-bottom: 36px;
+
+    @media (max-width: 1024px) {
+            margin-bottom: 24px;
+        }
+
+    &_show {
+        display: block;
+    }
+
+    &__form {
+        display: flex;
+        gap: 2px;
+        align-items: center;
+        width: 100%;
+        height: 46px;
+
+        @media (max-width: 768px) {
+            height: 36px;
+        }
+    }
+
+    &__input {
+        flex-grow: 1;
+        height: 100%;
+        border: 1px solid #8A8A8A;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        padding: 0 24px;
+
+        // Поддержка старых браузеров без :focus-visible
+        @supports not selector(:focus-visible) {
+            &:focus {
+                border: 1px solid #000000;
+            }
+        }
+
+        // Общие стили для фокуса
+        &:focus {
+            outline: none;
+        }
+
+        // Стили для фокуса в современных браузерах
+        &:focus-visible {
+            outline: none;
+            border: 1px solid #000000;
+        }
+    }
+
+    // Альтернативный способ: полный селектор без вложенности
+    // Это убирает серый цвет и работает так же
+    &__input::placeholder {
+        opacity: 0.4;
+    }
+
+    &__input::-webkit-search-cancel-button {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+            padding: 0 16px;
+            font-size: 10px;
+            line-height: 12px;
+        }
+
+    &__btn {
+        flex-basis: 141px;
+        height: 100%;
+        background-color: #000000;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+        text-transform: uppercase;
+
+        @media (max-width: 768px) {
+            flex-basis: 124px;
+            font-size: 10px;
+            line-height: 12px;
+        }
+
+        @media (max-width: 480px) {
+            flex-basis: 100px;
+        }
+    }
+}

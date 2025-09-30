@@ -23,49 +23,44 @@
     background-color: #fff;
 }*/
 
-
 img,
 svg {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
 }
-
-svg {
-    max-height: 100%;
-}
-
 
 button {
-    display: block;
-    padding: 0;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
+  display: block;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 h1,
 h2,
 h3,
 p,
-figure,
-fieldset {
-    margin: 0;
+figure {
+  margin: 0;
 }
 
-iframe {
-    border: none;
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
 }
 
 /*
@@ -73,10 +68,13 @@ iframe {
 */
 
 .visually-hidden {
-    position: fixed;
-    transform: scale(0);
+  position: fixed;
+  transform: scale(0);
 }
 
+.input-hide {
+  appearance: none;
+}
 
 /*
 Пример контейнера
@@ -86,35 +84,34 @@ iframe {
 в итоге 1240px
 Чтобы контент не прижимался к краям экрана
 */
-.main{
-    margin-bottom: 120px;
+.main {
+  margin-bottom: 120px;
 
-    @media (max-width: 768px) {
-        margin-bottom: 80px;
-    }
+  @media (max-width: 768px) {
+    margin-bottom: 80px;
+  }
 
-    @media (max-width: 420px) {
-        margin-bottom: 60px;
-    }
+  @media (max-width: 420px) {
+    margin-bottom: 60px;
+  }
 }
 
 .container {
-    --max-width: 1180px;
-    --padding: 30px;
-    max-width: calc(var(--max-width) + var(--padding) * 2);
-    padding: 0 var(--padding);
-    margin: 0 auto;
+  --max-width: 1180px;
+  --padding: 30px;
+  max-width: calc(var(--max-width) + var(--padding) * 2);
+  padding: 0 var(--padding);
+  margin: 0 auto;
 
-    @media (max-width: 1024px) {
+  @media (max-width: 1024px) {
     --max-width: 880px;
-    }
+  }
 
-    @media (max-width: 768px) {
-        --max-width: 620px;
-    }
+  @media (max-width: 768px) {
+    --max-width: 620px;
+  }
 
-    @media (max-width: 420px) {
-        --padding: 5px;
-    }
+  @media (max-width: 420px) {
+    --padding: 5px;
+  }
 }
-

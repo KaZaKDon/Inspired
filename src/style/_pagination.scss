@@ -1,0 +1,49 @@
+.pagination {
+    margin: 0 auto;
+    width: max-content;
+    display: flex;
+    gap: 16px;
+    padding-top: 40px;
+
+    &__list {
+        display: flex;
+        gap: 10px;
+        padding-top:3px;
+        padding-bottom: 6px;
+    }
+    &__link {
+        position: relative;
+        width: 17px;
+        font-size: 14px;
+        line-height: 17px;
+        color: #8A8A8A;
+
+        &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            height: 1px;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            background-color: transparent;
+        }
+
+        &_active {
+            color: #000;
+
+            &:after{
+                background-color: #000;
+            }
+        }
+    }
+
+    &__arrow {
+        color: #000;
+
+        &_disabled {
+            color: #8A8A8A;
+            pointer-events: none;
+        }
+    }
+}
