@@ -12,9 +12,13 @@ import { router } from "../utils/router";
 import { products } from '../const'
 import { getFavorite } from "../controllers/favoriteController";
 
-export const renderProducts = async (title, params) => {
+export const renderProducts = async ({title, params, render}) => {
     
     products.textContent = '';
+
+    if (!render) {
+        return;
+    }
 
     const data = await getData(`${API_URL}/api/goods`, params);
 

@@ -11,12 +11,19 @@
         padding-top:3px;
         padding-bottom: 6px;
     }
+    
     &__link {
         position: relative;
         width: 17px;
         font-size: 14px;
         line-height: 17px;
         color: #8A8A8A;
+
+        @media (max-width: 768px) {
+            width: 10px;
+            font-size: 10px;
+            line-height: 12px;
+        }
 
         &:after {
             content: '';

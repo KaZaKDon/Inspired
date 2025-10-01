@@ -16,10 +16,10 @@ import {
   renderCount
 } from "./renderCount";
 
-export const renderCard = (data) => {
+export const renderCard = ({data, render}) => {
   card.textContent = ''
 
-  if (!data) return
+  if (!render) return
 
   const {
     id,

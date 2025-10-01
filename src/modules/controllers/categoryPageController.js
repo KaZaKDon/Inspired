@@ -3,6 +3,8 @@ import { renderProducts } from "../render/renderProducts";
 import { renderHero } from "../render/renderHero";
 import { renderNavigation } from "../render/renderNavigation";
 import { renderCard } from "../render/renderCard";
+import { renderOrder } from "../render/renderOrder";
+import { renderCart } from "../render/renderCart";
 
 export const categoryPageController = (routerData) => {
     const { gender, category } = routerData.data;
@@ -20,8 +22,10 @@ export const categoryPageController = (routerData) => {
         return;
     }
     const { title } = categoryItem;
-    renderNavigation(gender, category);
-    renderHero(false);
-    renderCard(false)
-    renderProducts(title, params);
+    renderNavigation({gender, category, render: true});
+    renderHero({render: false});
+    renderCard({render: false})
+    renderProducts({title, params, render:true});
+    renderCart({render: false});
+    renderOrder({render: false});
 };
