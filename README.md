@@ -1,4 +1,5 @@
 # WEBPACK
+Магазин нижнего белья, на чистом JS.
 
 ссылка на youtube
 https://youtu.be/o8KMucDpSno
