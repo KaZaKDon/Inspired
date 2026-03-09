@@ -55,14 +55,10 @@ export const renderCard = ({data, render}) => {
       elem.addEventListener('submit', (e) => {
         e.preventDefault();
         let required = false;
-        const {
-          color,
-          size,
-          count
-        } = elem;
-        if (color.value && size.value && count.value) {
           const formData = new FormData(elem);
-          const json = Object.fromEntries(formData)
+          const product = Object.fromEntries(formData)
+
+          if (product.color && product.size && product.count) {
 
           addProductCart(product)
           
@@ -72,9 +68,9 @@ export const renderCard = ({data, render}) => {
         const p = createElement('p',
             {
               className: 'card__alert',
-              textContent: size.value
-                ? color.value
-                  ? count.value
+              textContent: product.size
+                ? product.color
+                  ? product.count
                     ? 'Что то пошло не так'
                     : 'Количество не корректное'
                   : 'Выберите цвет'
@@ -194,7 +190,7 @@ export const renderCard = ({data, render}) => {
     </div>
     `);
 
-  const count = renderCount();
+  const count = renderCount(1, 'card__count');
 
   const addCart = createElement('button', {
     className: "card__add-cart main-button",

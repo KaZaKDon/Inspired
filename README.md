@@ -1,28 +1,167 @@
-# WEBPACK
+# Inspired Store SPA
 
-ссылка на youtube
-https://youtu.be/o8KMucDpSno
+Frontend e-commerce application built with **Vanilla JavaScript**.  
+The project demonstrates a complete online store interface including product catalog, product page, cart management and checkout flow.
 
-Для установки пакетов используйте команду npm install
+The entire interface is dynamically generated with JavaScript without using static HTML templates.  
+The application follows a modular SPA architecture with client-side routing.
 
-## Команды
+---
 
-### Запуск сервера для разработки
-```shell
-npm run start
-```
+## Features
 
-### Сборка проекта без оптимизации
-```shell
-npm run build-dev
-```
+- SPA architecture
+- client-side routing using **Navigo**
+- dynamic UI rendering with JavaScript
+- product catalog with pagination
+- category filtering (women / men / kids)
+- search by product name and description
+- product detail page
+- color selection
+- size selection
+- shopping cart
+- quantity management
+- favorites
+- checkout form
+- order confirmation modal
+- responsive layout (desktop / tablet / mobile)
+- cart state stored in **LocalStorage**
+- product data loaded via API
 
-### Сборка проекта с оптимизацией
-```shell
-npm run build-prod
-```
+---
 
-### Очистка папки dist
-```shell
-npm run clear
-```
+## Architecture
+
+The project is organized using a modular structure:
+
+
+src
+├── controllers
+├── render
+├── utils
+├── getData
+├── const
+└── mainPage
+
+
+Application flow:
+
+
+Router (Navigo)
+↓
+Controllers
+↓
+Render modules
+↓
+DOM
+
+
+The interface is rendered using a custom DOM helper function that simplifies element creation and component composition.
+
+Example helper:
+
+```javascript
+export const createElement = (tag, attr, {append, appends, parent, cb} = {} ) => {
+    const element = document.createElement(tag);
+
+    if (attr) {
+        Object.assign(element, attr)
+    }
+
+    if (append && append instanceof HTMLElement) {
+        element.append(append)
+    }
+
+    if (appends && appends.every(item => item instanceof HTMLElement)) {
+        element.append(...appends)
+    }
+
+    if (parent && parent instanceof HTMLElement) {
+        parent.append(element)
+    }
+
+    if (cb && typeof cb === 'function') {
+        cb(element)
+    }
+
+    return element
+}
+Tech Stack
+
+Vanilla JavaScript
+
+Webpack
+
+SCSS
+
+Navigo (client-side router)
+
+LocalStorage
+
+REST API
+
+Responsive Design
+
+The application is fully responsive and optimized for multiple screen sizes.
+
+Desktop
+
+Full catalog layout with filters, product cards and cart.
+
+Tablet
+
+Grid layout adapts to medium screens while keeping usability and readability.
+
+Mobile
+
+Vertical interface layout optimized for smaller screens while maintaining full functionality.
+
+Project Purpose
+
+This project demonstrates:
+
+building SPA applications without frameworks
+
+modular frontend architecture
+
+dynamic DOM rendering
+
+client-side state management
+
+implementation of a real e-commerce user flow
+
+Installation
+
+Clone the repository:
+
+git clone https://github.com/yourusername/inspired-store-spa.git
+
+## Screenshots
+
+### Desktop
+![Desktop](screenshots/desktop.png)
+![Desktop](screenshots/desktop-tab.png)
+![Desktop](screenshots/desktop-zak.png)
+
+### Tablet
+![Tablet](screenshots/tablet.png)
+
+### Mobile
+![Mobile](screenshots/mobile.png)
+
+Install dependencies:
+
+npm install
+
+Run development server:
+
+npm run dev
+
+Build production version:
+
+npm run build
+
+
+Author
+
+Dmitry Vnukov
