@@ -1,6 +1,13 @@
 # Inspired Store SPA
 
-Frontend e-commerce application built with **Vanilla JavaScript**.  
+Frontend e-commerce SPA built with Vanilla JavaScript.
+
+![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-yellow)
+![Webpack](https://img.shields.io/badge/Webpack-Bundler-blue)
+![Navigo](https://img.shields.io/badge/Routing-Navigo-green)
+![Architecture](https://img.shields.io/badge/Architecture-SPA-orange)
+![Responsive](https://img.shields.io/badge/Responsive-Yes-brightgreen)
+
 The project demonstrates a complete online store interface including product catalog, product page, cart management and checkout flow.
 
 The entire interface is dynamically generated with JavaScript without using static HTML templates.  
@@ -34,26 +41,34 @@ The application follows a modular SPA architecture with client-side routing.
 
 The project is organized using a modular structure:
 
-
 src
-├── controllers
-├── render
-├── utils
-├── getData
-├── const
-└── mainPage
+├── controllers # application logic
+├── render # UI rendering modules
+├── utils # helper functions
+├── getData # API requests
+├── const # constants and configuration
+└── mainPage # main page components
 
 
-Application flow:
+This structure separates application logic, rendering modules and utilities,
+making the project easier to scale and maintain.
+
+Typical user interaction flow in the application:
 
 
-Router (Navigo)
+Catalog
 ↓
-Controllers
+Product Page
 ↓
-Render modules
+Select Size / Color
 ↓
-DOM
+Add to Cart
+↓
+Cart
+↓
+Checkout
+↓
+Order Confirmation
 
 
 The interface is rendered using a custom DOM helper function that simplifies element creation and component composition.
